@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <p class="h5 my-0 me-md-auto fw-normal">GifResponse</p>
+        <nav class="my-2 my-md-0 me-md-3">
+        </nav>
+    </header>
+    <img th:src="${gifLink}"/>
+    <br>
+    <br>
+<p th:text="'Rate today is: 1 RUB = ' + ${RUBrate} + ' ' + ${rateCurrent}" />
+<p th:text="'Rate on the ' + ${comparingDate} + ' was: 1 RUB = ' + ${RUBrateBack} + ' ' + ${rateCurrent}  + ' and it was ' + ${amountOfDays} + ' day(s) ago'" />
+<br>
+    <div class="form-group col-md-2">
+    <form th:action="@{/form}" method="post">
+        <span>How much days ago?</span>
+        <input name="email"/>
+        <br><br>
+            <span>Select a rate to compare</span>
+            <select class="form-control" id="status" name="status">
+                <option th:each="rate : ${rates}"
+                        th:value="${rate}"
+                        th:text="${rate}"/>
+            </select>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+</body>
+</html>
